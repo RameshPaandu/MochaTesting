@@ -1,0 +1,22 @@
+{
+  "name": "mochatesting",
+  "version": "1.0.0",
+  "description": "Simple app for testing",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha --timeout 15000 test",
+    "user": "mocha --timeout 15000 test/user.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "mocha": "^9.0.3",
+    "@apidevtools/json-schema-ref-parser": "^9.0.6",
+    "@openapi-contrib/openapi-schema-to-json-schema": "^3.0.4",
+    "ajv": "^7.0.2",
+    "ajv-formats": "^1.5.1",
+    "jsonpath": "^1.1.1",
+    "openapi-schema-validator": "^7.0.1"
+  }
+}

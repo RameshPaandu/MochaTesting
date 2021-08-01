@@ -1,0 +1,203 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "version": "0.1.0",
+    "title": "REQRES API",
+    "description": "Test your front-end against a real API\n",
+    "contact": {
+      "name": "REQRES API",
+      "email": "ramesh.lingadalli.anjutagi@gmail.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://reqres.in",
+      "description": "Test Public API"
+    }
+  ],
+  "paths": {
+    "/api/users?page=2": {
+      "get": {
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Testing public API",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "summary": "Loads List of all users",
+        "operationId": "spuPointsdfgd",
+        "description": "The Client will be able to access all the books",
+        "responses": {
+          "200": {
+            "description": "A Response Object with all the books",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BooksStatusResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Authentication header is missing or contains an invalid value. API-C didn't pass valid x-rtoken-subject with easy ID extracted from RAE token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Access token invalid. Make sure that the token passed in the `Authorization` headir is for RAE and has the `one-app-spu` scope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApicError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong on the server side. The client cannot recover from this failure."
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Error": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": false
+          },
+          "message": {
+            "type": "string",
+            "nullable": false
+          }
+        }
+      },
+      "ApicError": {
+        "required": [
+          "error_description",
+          "error"
+        ],
+        "properties": {
+          "error_description": {
+            "type": "string",
+            "nullable": false,
+            "example": "specify valid access token"
+          },
+          "error": {
+            "type": "string",
+            "nullable": false,
+            "example": "invalid_token"
+          }
+        }
+      },
+      "BooksStatusResponse": {
+        "required": [
+          "page",
+          "per_page",
+          "total",
+          "total_pages",
+          "data",
+          "support"
+        ],
+        "properties": {
+          "page": {
+            "type": "number",
+            "nullable": false
+          },
+          "per_page": {
+            "type": "number",
+            "nullable": false
+          },
+          "total": {
+            "type": "number",
+            "nullable": false
+          },
+          "total_pages": {
+            "type": "number",
+            "nullable": false
+          },
+          "data": {
+            "type": "array",
+            "nullable": false,
+            "items": {
+              "$ref": "#/components/schemas/dataSection"
+            }
+          },
+          "support": {
+            "type": "object",
+            "nullable": false,
+            "items": {
+              "$ref": "#/components/schemas/supportSection"
+            }
+          }
+        }
+      },
+      "dataSection": {
+        "required": [
+          "id",
+          "email",
+          "first_name",
+          "last_name",
+          "avatar"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "nullable": false
+          },
+          "email": {
+            "type": "string",
+            "nullable": false
+          },
+          "first_name": {
+            "type": "string",
+            "nullable": false
+          },
+          "last_name": {
+            "type": "string",
+            "nullable": false
+          },
+          "avatar": {
+            "type": "string",
+            "nullable": false
+          }
+        }
+      },
+      "supportSection": {
+        "required": [
+          "url",
+          "text"
+        ],
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "nullable": false
+          },
+          "text": {
+            "type": "string",
+            "nullable": false
+          }
+        }
+      }
+    }
+  }
+}
